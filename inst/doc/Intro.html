@@ -12,7 +12,7 @@
 
 <meta name="author" content="Tan Xin" />
 
-<meta name="date" content="2021-12-19" />
+<meta name="date" content="2021-12-20" />
 
 <title>Introduction to SIRS</title>
 
@@ -141,13 +141,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <h1 class="title toc-ignore">Introduction to SIRS</h1>
 <h4 class="author">Tan Xin</h4>
-<h4 class="date">2021-12-19</h4>
+<h4 class="date">2021-12-20</h4>
 
 
 
 <div id="overview" class="section level2">
 <h2>Overview</h2>
-<p><strong>StatComp21057</strong> is a R package devoted to sparse recovery. Two functions called <em>sirs</em> () and <em>cv.sirs</em> () are considered. The first function <em>sirs</em>() an implementation of the sequentially and iteratively reweighted squares (SIRS) algorithm, which gives the sparsest regularized least square solution using a penalty family(SICA) between L0 and L1. And <em>cv.sirs</em>() is a cross-validation procedure for SIRS algorithm to select the best parameter a of the penalty function <span class="math inline">\(\rho_a\)</span>.</p>
+<p><strong>StatComp21057</strong> is a R package devoted to sparse recovery. Two functions called <em>sirs</em> () and <em>cv.sirs</em> () are considered. The first function <em>sirs</em>() is an implementation of the sequentially and iteratively reweighted squares (SIRS) algorithm, which gives the sparsest regularized least square solution using a penalty family(SICA) between L0 and L1. And <em>cv.sirs</em>() is a cross-validation procedure for SIRS algorithm to select the best parameter a of the penalty function <span class="math inline">\(\rho_a\)</span>.</p>
 </div>
 <div id="sirs" class="section level2">
 <h2>sirs</h2>
@@ -283,7 +283,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">35</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="dv">500</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="dv">300</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>beta_0 <span class="ot">&lt;-</span> <span class="fu">numeric</span>(p)</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>beta_0[<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">0.7</span>,<span class="sc">-</span><span class="fl">1.2</span>, <span class="sc">-</span><span class="fl">0.9</span>, <span class="fl">0.3</span>, <span class="fl">0.55</span>)</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fl">0.1</span></span>
@@ -297,11 +297,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## [1] 0.2</code></pre>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>beta_hat <span class="ot">&lt;-</span> <span class="fu">sirs</span>(X, y, a.best)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">sum</span>(beta_hat <span class="sc">!=</span> <span class="dv">0</span>))</span></code></pre></div>
-<pre><code>## [1] 46</code></pre>
+<pre><code>## [1] 7</code></pre>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">which</span>(beta_hat <span class="sc">!=</span> <span class="dv">0</span>))</span></code></pre></div>
-<pre><code>##  [1]   1   2   4   5   6   7  32  38  50  71  77  80  81  85 106 120 123 138 148
-## [20] 157 183 192 200 206 219 233 292 301 311 329 341 345 348 359 366 372 382 384
-## [39] 405 408 418 427 428 443 458 467</code></pre>
+<pre><code>## [1] 1 2 3 4 5 6 7</code></pre>
 <p>From the result generated, we can see that <em>sirs</em> indeed selects the underlying true variables and recovers the coefficients correctly.</p>
 </div>
 

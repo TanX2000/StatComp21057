@@ -100,7 +100,7 @@ cv.sirs <- function(X, y, k = 10, a = seq(0,1,0.1)){
 library(MASS)
 set.seed(12345)
 n <- 35
-p <- 500
+p <- 300
 beta_0 <- numeric(p)
 beta_0[1:7] <- c(1, -0.5, 0.7,-1.2, -0.9, 0.3, 0.55)
 r <- 0.1

@@ -11,7 +11,7 @@ vignette: >
 
 ## Overview
 
-__StatComp21057__ is a R package devoted to sparse recovery. Two functions called _sirs_ () and _cv.sirs_ () are considered. The first function _sirs_() an implementation of the sequentially and iteratively reweighted squares (SIRS) algorithm, which gives the sparsest regularized least square solution using a penalty family(SICA) between L0 and L1. And _cv.sirs_() is a cross-validation procedure for SIRS algorithm to select the best parameter a of the penalty function $\rho_a$.
+__StatComp21057__ is a R package devoted to sparse recovery. Two functions called _sirs_ () and _cv.sirs_ () are considered. The first function _sirs_() is an implementation of the sequentially and iteratively reweighted squares (SIRS) algorithm, which gives the sparsest regularized least square solution using a penalty family(SICA) between L0 and L1. And _cv.sirs_() is a cross-validation procedure for SIRS algorithm to select the best parameter a of the penalty function $\rho_a$.
 
 
 ## sirs
@@ -161,7 +161,7 @@ Here we give an example of the usage of _sirs_() and _cv.sirs_().
 library(MASS)
 set.seed(12345)
 n <- 35
-p <- 500
+p <- 300
 beta_0 <- numeric(p)
 beta_0[1:7] <- c(1, -0.5, 0.7,-1.2, -0.9, 0.3, 0.55)
 r <- 0.1
